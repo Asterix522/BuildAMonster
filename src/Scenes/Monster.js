@@ -54,6 +54,12 @@ class Monster extends Phaser.Scene {
         my.sprite.fang = this.add.sprite(this.bodyX, this.bodyY + 50, "monsterParts", "mouthI.png");
         my.sprite.fang.setVisible(false);
 
+        // Accessories
+        my.sprite.horn1 = this.add.sprite(this.bodyX + 50, this.bodyY - 90, "monsterParts", "detail_yellow_horn_large.png");
+        my.sprite.horn2 = this.add.sprite(this.bodyX - 50, this.bodyY - 90, "monsterParts", "detail_yellow_horn_small.png");
+        my.sprite.horn2.setScale(-1, 1);
+
+
         this.keys = this.input.keyboard.addKeys('S,F,A,D'); 
         
     }
@@ -61,15 +67,18 @@ class Monster extends Phaser.Scene {
     update() {
         let my = this.my;    // create an alias to this.my for readability
 
+        //smile
         if (Phaser.Input.Keyboard.JustDown(this.keys.S)) {
             my.sprite.smile.setVisible(true);
             my.sprite.fang.setVisible(false);
         }
+        //fangs
         if (Phaser.Input.Keyboard.JustDown(this.keys.F)) {
             my.sprite.smile.setVisible(false);
             my.sprite.fang.setVisible(true);
         }
 
+        //move
         const moveSpeed = 5;
         if (this.keys.A.isDown) {
             this.bodyX -= moveSpeed;
